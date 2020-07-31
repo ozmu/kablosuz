@@ -1,6 +1,5 @@
 <template>
   <q-layout view="hHh lpR fFf">
-
     <q-header elevated class="bg-primary text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
@@ -9,7 +8,7 @@
           <q-avatar>
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
           </q-avatar>
-          Title
+          Kablosuz
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
