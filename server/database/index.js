@@ -24,10 +24,6 @@ const get = (collectionName, query) => {
     return collection.find(query).toArray()
 }
 
-const insert = () => {
-    
-}
-
 const updateQuantity = (id, quantity) => {
     const collection = db.collection('items')
     return collection.updateOne({ _id: ObjectId(id) }, { $inc: { quantity } })

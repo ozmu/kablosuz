@@ -1,5 +1,4 @@
 var express = require('express');
-var wifi = require('node-wifi');
 var {get} = require('../database/index.js');
 var router = express.Router();
 
@@ -11,22 +10,6 @@ router.get('/', function(req, res, next) {
 router.get('/mongo', function(req, res, next){
   get().then((items) => {
     res.send(items);
-  })
-})
-
-router.get('/wireless', function(request, response, next){
-  wifi.init({
-    iface: null
-  });
-
-  wifi.scan((error, networks) => {
-    if (error) {
-      response.send(`Errorq: ${error}`);
-      console.log('Error: ', error);
-    }
-    else {
-      response.json(networks);
-    }
   })
 });
 
