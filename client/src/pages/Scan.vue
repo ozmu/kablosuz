@@ -1,68 +1,81 @@
 <template>
   <q-page padding>
       <div class="q-pa-md">
-        <q-table :data="data" :columns="columns" row-key="name"/>
+        <q-table :data="data" :columns="columns" row-key="name" :pagination.sync="pagination"/>
       </div>
   </q-page>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data () {
     return {
+      pagination: {
+        rowsPerPage: 15 // current rows per page being displayed
+      },
       columns: [
         {
-          name: 'name',
+          name: 'ssid',
           required: true,
           label: 'SSID',
           align: 'left',
-          field: row => row.name,
+          field: 'ssid',
           format: val => `${val}`,
           sortable: true,
           classes: 'bg-grey-2 ellipsis',
           style: 'max-width: 100px',
           headerClasses: 'bg-primary text-white'
         },
-        { name: 'calories', align: 'center', label: 'Calories', field: 'calories', sortable: true },
-        { name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true },
-        { name: 'carbs', label: 'Carbs (g)', field: 'carbs' },
-        { name: 'protein', label: 'Protein (g)', field: 'protein' },
-        { name: 'sodium', label: 'Sodium (mg)', field: 'sodium' },
-        { name: 'calcium', label: 'Calcium (%)', field: 'calcium', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) },
-        { name: 'iron', label: 'Iron (%)', field: 'iron', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) }
-      ],
-      data: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          sodium: 87,
-          calcium: '14%',
-          iron: '1%'
+        { 
+          label: 'Mac', 
+          align: 'center', 
+          field: 'mac', 
+          sortable: true, 
+          headerClasses: 'bg-primary text-white' 
         },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          sodium: 129,
-          calcium: '8%',
-          iron: '1%'
+        { 
+          label: 'Quality', 
+          align: 'center', 
+          field: 'quality', 
+          sortable: true, 
+          //classes: 'badge badge-success', 
+          sort: (a, b) => parseInt(a, 10) - parseInt(b, 10), 
+          headerClasses: 'bg-primary text-white'
         },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          sodium: 337,
-          calcium: '6%',
-          iron: '7%'
+        { 
+          label: 'Channel', 
+          field: 'channel', 
+          sortable: true, 
+          headerClasses: 'bg-primary text-white'
+        },
+        { 
+          label: 'Security', 
+          field: 'security', 
+          headerClasses: 'bg-primary text-white' 
         }
-      ]
+      ],
+      data: [],
+      interval: ''
+    }
+  },
+
+  created(){
+    this.init();
+    this.interval = setInterval(this.init, 5000);
+  },
+
+  destroyed() {
+    clearInterval(this.interval)
+  },
+
+  methods: {
+    init(){
+      axios.get('http://localhost:3000/wireless/scan').then(response => {
+        console.log('Response: ', response)
+        this.data = response.data;
+      })
     }
   }
 }
