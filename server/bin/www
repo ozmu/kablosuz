@@ -8,6 +8,7 @@ var app = require('../app');
 var {init} = require('../database/index.js');
 var debug = require('debug')('server:server');
 var http = require('http');
+var pcap = require('pcap');
 
 /**
  * Get port from environment and store in Express.
@@ -37,6 +38,17 @@ init().then(() => {
 
     socket.on('getPackages', () => {
       console.log('get packages');
+
+      let pcapSession = pcap.createSession('', {
+        promiscuous: true
+      });
+
+      pcapSession.on('packet', function (rawPacket) {
+          // do some stuff with a raw packet
+          var packet = pcap.decode.packet(rawPacket);
+          console.log('packet: ', JSON.stringify(packet))
+      });
+    
     })
 
     socket.on('disconnect', () => {
