@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    ...page content...
+      Scan vue
   </q-page>
 </template>
 

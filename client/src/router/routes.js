@@ -1,5 +1,5 @@
 import Index from '../pages/Index';
-import About from '../pages/About';
+import Scan from '../pages/Scan';
 
 const routes = [
     { 
@@ -12,9 +12,9 @@ const routes = [
         component: Index
     },
     {
-        path: '/about',
-        name: 'about',
-        component: About
+        path: '/scan',
+        name: 'scan',
+        component: Scan
     }
 ]
   

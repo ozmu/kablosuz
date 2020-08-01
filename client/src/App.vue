@@ -16,9 +16,9 @@
     <q-drawer show-if-above v-model="left" side="left" elevated>
       <q-scroll-area class="fit">
         <q-list padding class="text-grey-8">
-          <q-item :to="{path: route.page}" tag="div" v-ripple v-for="route in routes" :key="route.label" clickable>
+          <q-item :to="{name: route.page}" tag="div" v-ripple v-for="route in routes" :key="route.label" clickable>
             <q-item-section avatar>
-              <q-icon :name="route.icon" />
+              <q-icon :name="route.icon"/>
             </q-item-section>
             <q-item-section>
               <q-item-label>{{ route.label }}</q-item-label>
@@ -41,8 +41,8 @@ export default {
     return {
       left: false,
       routes: [
-        {label: 'Anasayfa', page: 'dashboard', icon: 'star_border'},
-        {label: 'Hakkında', page: 'about', icon: 'person'}
+        {label: 'Anasayfa', page: 'index', icon: 'star_border'},
+        {label: 'Tara', page: 'scan', icon: 'person'}
       ]
     }
   }
