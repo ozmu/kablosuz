@@ -1,0 +1,53 @@
+{
+    "database": {
+        "collections": [
+            {
+                "title": "networks",
+                "fields": {
+                    "ssid": "Test",
+                    "bssid": "FC:4A:E9:93:6A:63",
+                    "macAddress": "FC:4A:E9:93:6A:63",
+                    "mode": "Infra",
+                    "channel": 1,
+                    "frequency": 2000,
+                    "signal_level": -50,
+                    "quality": 70,
+                    "security": "WPA1 WPA2",
+                    "securityFlags": {
+                        "wpa": "pair_tkip pair_ccmp group_tkip psk",
+                        "rsn": "pair_tkip pair_ccmp group_tkip psk"
+                    }
+                }
+            },
+            {
+                "title": "handshakes",
+                "fields": {
+                    "networkId": "_123123qwd",
+                    "filePath": "/path/to/handshake",
+                    "capturedAt": "now",
+                    "breakDetails": {
+                        "startedAt": "time",
+                        "completedAt": "time"
+                    }
+                }
+            },
+            {
+                "title": "passwords",
+                "fields": {
+                    "password": "sifre123",
+                    "handshakes": [
+                        {
+                            "id": "_qdqwdq",
+                            "isMatched": false
+                        },
+                        {
+                            "id": "_213qdqwd",
+                            "isMatched": true
+                        }
+                    ],
+                    "createdAt": "now"
+                }
+            }
+        ]
+    }
+}
