@@ -6,7 +6,15 @@
 
 <script>
 export default {
+  data(){
+    return {
 
+    }
+  },
+
+  created(){
+    this.$socket.emit('getPackages');
+  }
 }
 </script>
 

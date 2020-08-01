@@ -6,6 +6,14 @@ import './quasar'
 
 import router from './router'
 
+
+import VueSocketIO from 'vue-socket.io';
+Vue.use(new VueSocketIO({
+  connection: 'http://localhost:3000'
+}));
+
+
+
 Vue.config.productionTip = false
 
 new Vue({
